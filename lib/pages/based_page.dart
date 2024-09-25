@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_app/pages/dio_page.dart';
 import 'package:learning_app/pages/home_page.dart';
 import 'package:learning_app/pages/line_login_page.dart';
 import 'package:learning_app/pages/post_page.dart';
@@ -17,7 +18,8 @@ class _MainPageState extends State<MainPage> {
     const HomePage(),
     const PostPage(),
     LineLoginPage(),
-    EventGridPage()
+    DioPage()
+    // EventGridPage()
   ];
 
   void _onPageChanged(int index) {

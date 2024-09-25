@@ -24,7 +24,7 @@ class EventGridPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: EventGrid(events: events), // Use the EventGrid widget
+        child: EventGrid(events: events),
       ),
     );
   }

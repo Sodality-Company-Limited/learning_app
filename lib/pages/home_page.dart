@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/picture_slider.dart';
 import '../routers/go_router_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../api/base.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,6 +23,24 @@ class _HomePageState extends ConsumerState<HomePage> {
   //     BottomNavigationBarItem(icon: Icon(Icons.person), label: '')
   //   ],
   // ),
+  List<String> filteredImageList = [];
+  String searchText = '';
+
+  void _filterImages(String query) {
+    setState(() {
+      searchText = query;
+      if (query.isEmpty) {
+        filteredImageList = imageList;
+      } else {
+        filteredImageList = imageList
+            .where((image) => image
+                .toLowerCase()
+                .contains(query.toLowerCase())) // Filter images
+            .toList();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // final router = ref.watch(goRouterProvider);
@@ -60,8 +79,24 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ],
               ),
             ),
+            TextField(
+              onChanged: _filterImages,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search images...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
             const SizedBox(height: 25),
-            Expanded(child: PictureSlider(imageList: imageList)),
+            Expanded(
+              child: PictureSlider(imageList: filteredImageList),
+            ),
+            // Expanded(child: PictureSlider(imageList: imageList)),
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(16.0),
