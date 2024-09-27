@@ -42,7 +42,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             
-                <data android:scheme="http" android:host="learningflutterapp.page.link" android:pathPrefix="/home" />
+                <data android:scheme="http" android:host="learningflutterapp.page.link" />
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
@@ -61,7 +61,9 @@
             
             </intent-filter>
         </activity>
-
+        <meta-data
+            android:name="com.google.firebase.analytics.APP_ID"
+            android:value="@string/google_app_id" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

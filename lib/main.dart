@@ -6,6 +6,10 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:app_links/app_links.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import './firebase_options.dart';
+import 'package:flutter/foundation.dart';
+
 import 'dart:async';
 // import 'package:firebase_core/firebase_core.dart';
 
@@ -20,7 +24,29 @@ Future<String?> startUri() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
+  // await Firebase.initializeApp(
+  //   options: const FirebaseOptions(
+  //     apiKey: "AIzaSyDo7q5wpqEgFnnJaZ09VNSObYzGTH3o-gg",
+  //     appId: "1:618808080398:android:24c34182ecb315e98da45f",
+  //     messagingSenderId: "618808080398",
+  //     projectId: "learningapp-371ba",
+  //     storageBucket: "learningapp-371ba.appspot.com",
+  //   ),
+  // );
+  // if (kDebugMode) {
+  //   await Firebase.initializeApp(
+  //     options: const FirebaseOptions(
+  //       apiKey: "AIzaSyDo7q5wpqEgFnnJaZ09VNSObYzGTH3o-gg",
+  //       appId: "1:618808080398:android:24c34182ecb315e98da45f",
+  //       messagingSenderId: "618808080398",
+  //       projectId: "learningapp-371ba",
+  //     ),
+  //   );
+  // } else {
+  //   await Firebase.initializeApp(); // This uses google-services.json
+  // }
   await Hive.initFlutter();
   runApp(const ProviderScope(child: MyApp()));
 }
